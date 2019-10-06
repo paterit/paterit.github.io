@@ -5,9 +5,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+  $(function  () {
+    $('[data-toggle="buttons"] .btn').on('click', function () {
+      // toggle style
+      $(this).toggleClass('btn-light btn-success active');
+      // toggle checkbox
+      var $chk = $(this).find('[type=checkbox]');
+      $chk.prop('checked',!$chk.prop('checked'));
+      
+      return false;
+    });
+  });
+
+  // $('form').on('submit',function(e){
+  //     // watch form values
+  //     $('#formValues').html(($('form').serialize()));
+  //     e.preventDefault();
+  // });
+  </script>
+  
 </head>
 <body>
 
@@ -16,29 +38,49 @@
   <p><b>Role:</b> Product Owner (PO)
 </div>
   
-<div class="container">
+<form class="container">
   <div class="row">
     <div class="col">
-      <button type="button" class="btn btn-primary">R</button>
+      <div data-toggle="buttons">
+        <label class="btn btn-block btn-light active">
+          <input type="checkbox" name="responsible" autocomplete="off" hidden=""> R
+        </label>
+      </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary">A</button>
+      <div data-toggle="buttons">
+        <label class="btn btn-block btn-light active">
+          <input type="checkbox" name="acountable" hidden="" autocomplete="off"> A
+        </label>
+      </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary">S</button>
+      <div data-toggle="buttons">
+        <label class="btn btn-block btn-light active">
+          <input type="checkbox" name="supportive" hidden="" autocomplete="off"> S
+        </label>
+      </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary">C</button>
+      <div data-toggle="buttons">
+        <label class="btn btn-block btn-light active">
+          <input type="checkbox" name="consult" hidden="" autocomplete="off"> C
+        </label>
+      </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary">I</button>
+      <div data-toggle="buttons">
+        <label class="btn btn-block btn-light active">
+          <input type="checkbox" name="inform" hidden="" autocomplete="off"> I
+        </label>
+      </div>
     </div>
   </div>
   <div class="row">
     <p>&nbsp;</p>
     <p>&nbsp;</p>
   </div>
-</div>
+</form>
 
 <div class="jumbotron">
   <p><b>Roles:</b>Team, PO, SM, SDM, HSD, HR</p>
