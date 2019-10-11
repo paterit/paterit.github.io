@@ -29,49 +29,68 @@
   //     e.preventDefault();
   // });
   </script>
+
   
 </head>
 <body>
 
-<div class="jumbotron jumbotron-fluid text-center">
-  <p><b>Activity:</b> Scale up/down the team</p> 
-  <p><b>Role:</b> Product Owner (PO)
-</div>
-  
-<form class="container">
-  <div class="row">
-    <div class="col">
+<div class="container">
+  <div class="d-flex text-primary">
+    <div class="p-2">
+      <button class="btn btn-outline-primary" type="button"><<</button>
+    </div>
+    <div class="p-2  flex-grow-1 text-center">
+      <p>Activity (1/24)<br><b>Scale up/down the team</b></p> 
+    </div>
+    <div class="p-2">
+      <button class="btn btn-outline-primary" type="button">>></button>
+    </div>
+  </div>
+  <div class="d-flex text-info">
+    <div class="p-2">
+      <button class="btn btn-outline-info" type="button"><<</button>
+    </div>
+    <div class="p-2 flex-grow-1 text-center">
+      <p>Role (2/6)<br><b>Product Owner (PO)</b></p> 
+    </div>
+    <div class="p-2">
+      <button class="btn btn-outline-info" type="button">>></button>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="p-1">
       <div data-toggle="buttons">
-        <label class="btn btn-block btn-light active">
+        <label class="btn btn-lg btn-block btn-light active">
           <input type="checkbox" name="responsible" autocomplete="off" hidden=""> R
         </label>
       </div>
     </div>
-    <div class="col">
+    <div class="p-1">
       <div data-toggle="buttons">
-        <label class="btn btn-block btn-light active">
+        <label class="btn btn-lg btn-block btn-light active">
           <input type="checkbox" name="acountable" hidden="" autocomplete="off"> A
         </label>
       </div>
     </div>
-    <div class="col">
+    <div class="p-1">
       <div data-toggle="buttons">
-        <label class="btn btn-block btn-light active">
+        <label class="btn btn-lg btn-block btn-light active">
           <input type="checkbox" name="supportive" hidden="" autocomplete="off"> S
         </label>
       </div>
     </div>
-    <div class="col">
+    <div class="p-1">
       <div data-toggle="buttons">
-        <label class="btn btn-block btn-light active">
+        <label class="btn btn-lg btn-block btn-light active">
           <input type="checkbox" name="consult" hidden="" autocomplete="off"> C
         </label>
       </div>
     </div>
-    <div class="col">
+    <div class="p-1">
       <div data-toggle="buttons">
-        <label class="btn btn-block btn-light active">
-          <input type="checkbox" name="inform" hidden="" autocomplete="off"> I
+        <label class="btn btn-lg btn-block btn-light active">
+          <input type="checkbox" name="inform" hidden="" autocomplete="off"> &nbsp;I&nbsp;
         </label>
       </div>
     </div>
@@ -80,7 +99,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
   </div>
-</form>
+</div>
 
 <div class="jumbotron">
   <p><b>Roles:</b>Team, PO, SM, SDM, HSD, HR</p>
