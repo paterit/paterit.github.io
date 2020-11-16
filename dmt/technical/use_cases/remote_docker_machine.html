@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Set up Remote Docker Machine &mdash; dmt 0.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Simple development use cases" href="simple_dev.html" />
+    <link rel="prev" title="Technical use cases" href="../use_cases.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> dmt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../technical.html">Technical documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install_and_config.html">Installation and configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links_page.html">Links to services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../use_cases.html">Technical use cases</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Set up Remote Docker Machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-remote-docker-machine-rdm-ready-for-secure-connections">Create Remote Docker Machine (RDM) ready for secure connections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-certificates-on-you-rdm">Prepare certificates on you RDM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-your-docker-daemon-on-rdm-to-accept-only-secure-http-connections">Configure your docker daemon on RDM to accept only secure http connections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copy-certificates-from-your-rdm-to-your-ci-cd-worker-cert-folder">Copy certificates from your RDM to your CI/CD worker /cert folder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-if-rdm-works">Test if RDM works</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simple_dev.html">Simple development use cases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user_documentation.html">User documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">dmt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../technical.html">Technical documentation</a> &raquo;</li>
+        
+          <li><a href="../use_cases.html">Technical use cases</a> &raquo;</li>
+        
+      <li>Set up Remote Docker Machine</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/use_cases/remote_docker_machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="set-up-remote-docker-machine">
+<h1>Set up Remote Docker Machine<a class="headerlink" href="#set-up-remote-docker-machine" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-remote-docker-machine-rdm-ready-for-secure-connections" id="id1">Create Remote Docker Machine (RDM) ready for secure connections</a></p></li>
+<li><p><a class="reference internal" href="#prepare-certificates-on-you-rdm" id="id2">Prepare certificates on you RDM</a></p></li>
+<li><p><a class="reference internal" href="#configure-your-docker-daemon-on-rdm-to-accept-only-secure-http-connections" id="id3">Configure your docker daemon on RDM to accept only secure http connections</a></p></li>
+<li><p><a class="reference internal" href="#copy-certificates-from-your-rdm-to-your-ci-cd-worker-cert-folder" id="id4">Copy certificates from your RDM to your CI/CD worker /cert folder</a></p></li>
+<li><p><a class="reference internal" href="#test-if-rdm-works" id="id5">Test if RDM works</a></p></li>
+</ul>
+</div>
+<div class="section" id="create-remote-docker-machine-rdm-ready-for-secure-connections">
+<h2><a class="toc-backref" href="#id1">Create Remote Docker Machine (RDM) ready for secure connections</a><a class="headerlink" href="#create-remote-docker-machine-rdm-ready-for-secure-connections" title="Permalink to this headline">¶</a></h2>
+<p>As an example we will use different than your workstation Ubuntu server available in the same local network, but this solution
+should work for any machine that can be reach with its IP address.
+First of all we need to verify if docker machine is ready to accept encrypted http connections.
+If this is a fresh Ubuntu installation make sure
+that <a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/#configuring-remote-access-with-systemd-unit-file">this post-installation steps for Linux</a> are done.</p>
+<p>To make the host available from any machine in your network in the file <code class="docutils literal notranslate"><span class="pre">/lib/systemd/system/docker.service</span></code> instead of <code class="docutils literal notranslate"><span class="pre">-H</span> <span class="pre">tcp://127.0.0.1:2375</span></code> put <code class="docutils literal notranslate"><span class="pre">-H</span> <span class="pre">tcp://0.0.0.0:2375</span></code>.</p>
+<p>Flush changes and restart docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl daemon-reload
+sudo systemctl restart docker
+</pre></div>
+</div>
+<p>To test if your RDM is open to http connections (not encrypted yet), on your workstation in the new terminal window run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will show your local containers</span>
+docker images
+<span class="c1"># export DOCKER_HOST=your.remote.docker.IP</span>
+<span class="c1"># in my case it would be</span>
+<span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="m">192</span>.168.100.34
+<span class="c1"># Now as we are in the context of remoted DOCKER_HOST, running</span>
+docker images
+<span class="c1"># will show an empty list if your Ubuntu server is brand new or some other list if the server was already used for docker</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prepare-certificates-on-you-rdm">
+<h2><a class="toc-backref" href="#id2">Prepare certificates on you RDM</a><a class="headerlink" href="#prepare-certificates-on-you-rdm" title="Permalink to this headline">¶</a></h2>
+<p>Follow <a class="reference external" href="https://docs.docker.com/engine/security/https/">the instruction</a> to generate your certificates.</p>
+<p>You can also use <a class="reference external" href="https://github.com/paterit/ssl-server-client">certs generator</a> - take a look at <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code> output there.</p>
+</div>
+<div class="section" id="configure-your-docker-daemon-on-rdm-to-accept-only-secure-http-connections">
+<h2><a class="toc-backref" href="#id3">Configure your docker daemon on RDM to accept only secure http connections</a><a class="headerlink" href="#configure-your-docker-daemon-on-rdm-to-accept-only-secure-http-connections" title="Permalink to this headline">¶</a></h2>
+<p>Next step is to configure yur docker host to accept only secure http connections. Following <a class="reference external" href="https://docs.docker.com/engine/security/https/">this doc</a>
+and using certificates generated in previous step, in the config file <code class="docutils literal notranslate"><span class="pre">/lib/systemd/system/docker.service</span></code>
+add to <code class="docutils literal notranslate"><span class="pre">ExecStart</span></code> command parameters <code class="docutils literal notranslate"><span class="pre">--tlsverify</span> <span class="pre">--tlscacert=ca.pem</span> <span class="pre">--tlscert=server-cert.pem</span> <span class="pre">--tlskey=server-key.pem</span></code>
+and make sure that path to the cert files are correct.</p>
+<p>Flush changes and restart docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl daemon-reload
+sudo systemctl restart docke
+</pre></div>
+</div>
+<p>On your docker client machine run this code to verify the secure connetion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># set env variables that will tell docker to use secure connection and your certificates</span>
+<span class="c1"># use IP or host name valid for your case</span>
+<span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="m">192</span>.168.100.34:2375
+<span class="nb">export</span> <span class="nv">DOCKER_TLS_VERIFY</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">DOCKER_CERT_PATH</span><span class="o">=</span>/path/to/previously/generated/certs
+<span class="c1"># now docker should run in the context of your RDM</span>
+docker version
+docker ps
+</pre></div>
+</div>
+</div>
+<div class="section" id="copy-certificates-from-your-rdm-to-your-ci-cd-worker-cert-folder">
+<h2><a class="toc-backref" href="#id4">Copy certificates from your RDM to your CI/CD worker /cert folder</a><a class="headerlink" href="#copy-certificates-from-your-rdm-to-your-ci-cd-worker-cert-folder" title="Permalink to this headline">¶</a></h2>
+<p>CI/CD worker acts as a docker client for your RDM so copy your ca.pem, key.pem and cert.pem to <code class="docutils literal notranslate"><span class="pre">cicd/worker/certs</span></code> in your DMT project folder. Set the right values in <code class="docutils literal notranslate"><span class="pre">remote.docker.env</span></code> file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># use your RDM IP address, in my case it is 192.168.100.34
+DOCKER_HOST=192.168.100.34:2375
+DOCKER_TLS_VERIFY=1
+# this is the location where files from ``cicd/worker/certs`` will be copied. no need to change that
+DOCKER_CERT_PATH=//buildbot/certs
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-if-rdm-works">
+<h2><a class="toc-backref" href="#id5">Test if RDM works</a><a class="headerlink" href="#test-if-rdm-works" title="Permalink to this headline">¶</a></h2>
+<p>Go to <code class="docutils literal notranslate"><span class="pre">dmt-testing</span></code> directory and run:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>make test-remote
+</pre></div>
+</div>
+<p>During the test procedure variable defined in <code class="docutils literal notranslate"><span class="pre">remote.docker.env</span></code> file will be copied into <code class="docutils literal notranslate"><span class="pre">cicd/cicd.docker.env</span></code> file which is used by CI/CD worker to determine docker machine
+on which DMT will be installed and tested (trough <code class="docutils literal notranslate"><span class="pre">env_file</span></code> setting for <code class="docutils literal notranslate"><span class="pre">cicd-worker</span></code> service definition in docker-compose.cicd.yml).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simple_dev.html" class="btn btn-neutral float-right" title="Simple development use cases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../use_cases.html" class="btn btn-neutral float-left" title="Technical use cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Wojciech Semik PaterIT
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

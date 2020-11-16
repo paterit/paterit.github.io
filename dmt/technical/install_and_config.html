@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation and configuration &mdash; dmt 0.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Links to services" href="links_page.html" />
+    <link rel="prev" title="Technical documentation" href="technical.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> dmt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="technical.html">Technical documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements-for-elasticsearch-to-work">Requirements for ElasticSearch to work.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-development">Local development</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#production">Production</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#developing-changes">Developing changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#short-cuts">Short-cuts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-shell">Docker shell</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring">Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-testing">Performance testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-ci-cd-with-local-docker-machine-or-remote-docker-host">Local CI/CD with local docker-machine or remote docker host</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#remote-docker-host">Remote docker host</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-docker-engine-context-for-cicd-docker-machine">The docker-engine context for cicd docker-machine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#develop-ci-cd-machinery">Develop CI/CD machinery</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bdd-sbe">BDD / SBE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unit-testing">Unit testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="links_page.html">Links to services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use_cases.html">Technical use cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user_documentation.html">User documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dmt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="technical.html">Technical documentation</a> &raquo;</li>
+        
+      <li>Installation and configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/technical/install_and_config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation-and-configuration">
+<h1>Installation and configuration<a class="headerlink" href="#installation-and-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation" id="id2">Installation</a></p></li>
+<li><p><a class="reference internal" href="#developing-changes" id="id3">Developing changes</a></p></li>
+<li><p><a class="reference internal" href="#short-cuts" id="id4">Short-cuts</a></p></li>
+<li><p><a class="reference internal" href="#logs" id="id5">Logs</a></p></li>
+<li><p><a class="reference internal" href="#monitoring" id="id6">Monitoring</a></p></li>
+<li><p><a class="reference internal" href="#performance-testing" id="id7">Performance testing</a></p></li>
+<li><p><a class="reference internal" href="#local-ci-cd-with-local-docker-machine-or-remote-docker-host" id="id8">Local CI/CD with local docker-machine or remote docker host</a></p></li>
+<li><p><a class="reference internal" href="#testing" id="id9">Testing</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id10">Production</a></p></li>
+<li><p><a class="reference internal" href="#documentation" id="id11">Documentation</a></p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id2">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Below is a description how to use it in local development and production.</p>
+<div class="section" id="requirements-for-elasticsearch-to-work">
+<h3>Requirements for ElasticSearch to work.<a class="headerlink" href="#requirements-for-elasticsearch-to-work" title="Permalink to this headline">¶</a></h3>
+<p>In order to have ElasticSearch working you have to set on your OS host for dmt-logs container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sysctl</span> <span class="o">-</span><span class="n">w</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-development">
+<h3>Local development<a class="headerlink" href="#local-development" title="Permalink to this headline">¶</a></h3>
+<p>All what you need is to have <a class="reference external" href="https://docs.docker.com/">Docker Engine</a> and <a class="reference external" href="https://docs.docker.com/compose/">Docker Compose</a>   installed on your OS.
+If you can read this doc you probably heave read README from dmt project, but if not <a class="reference external" href="https://github.com/paterit/django-microservice-template">check this</a> out before further reading.</p>
+<p>To build and run type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+</pre></div>
+</div>
+<p>This will build your base images then with the docker-compose build and start all your containers.</p>
+<p>To let docker-compose to build and run what is needed run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">run</span>
+</pre></div>
+</div>
+<p>To verify if all is up and running as planned you can run SBE tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sbe</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="production">
+<h3>Production<a class="headerlink" href="#production" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+</div>
+<div class="section" id="developing-changes">
+<h2><a class="toc-backref" href="#id3">Developing changes</a><a class="headerlink" href="#developing-changes" title="Permalink to this headline">¶</a></h2>
+<p>When all docker containers are up and running, what can be checked by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span>
+</pre></div>
+</div>
+<p>You should see containers with names like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dmt</span><span class="o">-</span><span class="n">db</span> <span class="o">-</span> <span class="n">PostgeSQL</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">web</span> <span class="o">-</span> <span class="n">Django</span> <span class="n">application</span> <span class="k">with</span> <span class="n">Gunicorn</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">https</span> <span class="o">-</span> <span class="n">Nginx</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">testing</span> <span class="o">-</span> <span class="n">Behave</span><span class="p">,</span> <span class="n">Selenium</span><span class="p">,</span> <span class="n">PhantomJS</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">logs</span> <span class="o">-</span> <span class="n">ELK</span> <span class="n">stack</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">logspout</span> <span class="o">-</span> <span class="n">Logspout</span> <span class="o">-</span> <span class="n">log</span> <span class="n">forwarder</span> <span class="kn">from</span> <span class="nn">Docker</span> <span class="n">to</span> <span class="n">Logstash</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">console</span> <span class="o">-</span> <span class="n">Portainer</span> <span class="o">-</span> <span class="n">web</span> <span class="n">docker</span> <span class="n">console</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">monitoring</span><span class="o">-</span><span class="n">agent</span> <span class="o">-</span> <span class="n">Glances</span> <span class="o">-</span> <span class="n">monitoring</span> <span class="n">agent</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">monitoring</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span> <span class="n">Graphit</span><span class="o">+</span><span class="n">Grafana</span> <span class="o">-</span> <span class="n">monitoring</span> <span class="n">server</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">perf</span> <span class="o">-</span> <span class="n">Locust</span> <span class="o">-</span> <span class="n">performance</span> <span class="n">testing</span>
+</pre></div>
+</div>
+<p>To stop all containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">stop</span>
+</pre></div>
+</div>
+<p>And start them again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Changes in web and SBE tests are dynamically reloaded after each change in code.
+To reload https container run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">reload</span><span class="o">-</span><span class="n">https</span>
+</pre></div>
+</div>
+<p>to reload changes in docs run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">upload</span><span class="o">-</span><span class="n">docs</span>
+</pre></div>
+</div>
+<p>to reload changes in Locust run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">rerun</span><span class="o">-</span><span class="n">perf</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="short-cuts">
+<h2><a class="toc-backref" href="#id4">Short-cuts</a><a class="headerlink" href="#short-cuts" title="Permalink to this headline">¶</a></h2>
+<p>Makefile basically covers all docker and docker-compose commands. Some of them can be useful like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span><span class="o">-</span><span class="n">apps</span>
+</pre></div>
+</div>
+<p>which stops and removes all containers and images build by docker-compose.
+Additionally to clean up all images and containers run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span><span class="o">-</span><span class="nb">all</span>
+</pre></div>
+</div>
+<p>If you the just run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+</pre></div>
+</div>
+<p>it will build and start all you need to have working dmt.</p>
+<p>To see all make commands with short description just run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">help</span>
+</pre></div>
+</div>
+<div class="section" id="docker-shell">
+<h3>Docker shell<a class="headerlink" href="#docker-shell" title="Permalink to this headline">¶</a></h3>
+<p>To easily open the shell for containers you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">shell</span><span class="o">-</span><span class="n">web</span>
+<span class="n">make</span> <span class="n">shell</span><span class="o">-</span><span class="n">https</span>
+<span class="n">make</span> <span class="n">shell</span><span class="o">-</span><span class="n">testing</span>
+
+<span class="ow">and</span> <span class="n">so</span> <span class="n">on</span>
+</pre></div>
+</div>
+<p>to see all shell make commands you can run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">shell-</span></code></p>
+</div>
+</div>
+<div class="section" id="logs">
+<h2><a class="toc-backref" href="#id5">Logs</a><a class="headerlink" href="#logs" title="Permalink to this headline">¶</a></h2>
+<p>Logs from Django and gunicorn are stored in volume container and written to /opt/dmt/logs/web folder. You can access them by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">logs</span><span class="o">-</span><span class="n">web</span>
+</pre></div>
+</div>
+<p>Logs for Nginx are stored in volume container https-logs. You can access them by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">logs</span><span class="o">-</span><span class="n">https</span>
+</pre></div>
+</div>
+<p>Both web application’s logs and Nginx’ logs are transported to the logs collector container (ELK stack). You can analyze and watch them through <a class="reference external" href="http://127.0.0.1:5601/">Kibana web interface</a>.
+The idea of delivering logs to the logs collector is to have a volume container for each application which logs should be transmitted to the logs collector. Application is writing the logs to that container and in the same time the logs are delivered to stdout to transfer them to docker. From docker logs are shipped to Logstash with Logspout container.</p>
+</div>
+<div class="section" id="monitoring">
+<h2><a class="toc-backref" href="#id6">Monitoring</a><a class="headerlink" href="#monitoring" title="Permalink to this headline">¶</a></h2>
+<p>For each docker-engine there is an instance of <a class="reference external" href="https://nicolargo.github.io/glances/">Glances</a> running. It sends monitoring data to <a class="reference external" href="https://graphiteapp.org/">Graphite</a> server via statsd protocol. From Graphite data are available in <a class="reference external" href="https://grafana.com/">Grafana</a> <a class="reference external" href="http:127.0.0.1:88">dashboards</a>.</p>
+<p>There are two dashboards:</p>
+<ul class="simple">
+<li><p>Glances - graphite: shows main system metrics for docker-engine host and containers</p></li>
+<li><p>Performance testing: useful to observe system behavior under performance testing</p></li>
+</ul>
+</div>
+<div class="section" id="performance-testing">
+<h2><a class="toc-backref" href="#id7">Performance testing</a><a class="headerlink" href="#performance-testing" title="Permalink to this headline">¶</a></h2>
+<p>Performance testing is done with the <a class="reference external" href="https://locust.io">Locust</a> tool. To build your own tests change the file <code class="docutils literal notranslate"><span class="pre">locustfile.py</span></code> in <code class="docutils literal notranslate"><span class="pre">perf-testing</span></code> folder.</p>
+<p>The current configuration allows you to define basic performance tests as SBE tests with Behave. Take a look at <code class="docutils literal notranslate"><span class="pre">testing/features/perf.feature</span></code> file to see how it works.</p>
+<p>To run performance tests you may run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sbe</span><span class="o">-</span><span class="n">perf</span>
+</pre></div>
+</div>
+<p>Container with Locust will be rebooted (Locust’s problem with hungry memory allocation) and the SBE test will be run. If you go to Grafana (“Performance testing” dashboard) you can see basic statistics regarding your tests like: response time, requests per second, CPU and memory usage on containers.</p>
+</div>
+<div class="section" id="local-ci-cd-with-local-docker-machine-or-remote-docker-host">
+<h2><a class="toc-backref" href="#id8">Local CI/CD with local docker-machine or remote docker host</a><a class="headerlink" href="#local-ci-cd-with-local-docker-machine-or-remote-docker-host" title="Permalink to this headline">¶</a></h2>
+<p>You can set up docker-machine and Docker containers with buildbot which
+will allow you to run and test your code with in docker-machine. Start
+with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">dmt</span>
+<span class="n">make</span> <span class="n">dev</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">machine</span>
+</pre></div>
+</div>
+<p>To check if it runs properly verify if new containers are running by
+typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span>
+</pre></div>
+</div>
+<p>You should see among running containters with names like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dmt</span><span class="o">-</span><span class="n">cicd</span><span class="o">-</span><span class="n">worker</span> <span class="o">-</span> <span class="n">Buildbot</span> <span class="n">worker</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">cicd</span><span class="o">-</span><span class="n">master</span> <span class="o">-</span> <span class="n">Buidbot</span> <span class="n">master</span>
+<span class="n">dmt</span><span class="o">-</span><span class="n">cicd</span><span class="o">-</span><span class="n">db</span> <span class="o">-</span> <span class="n">Buildbot</span> <span class="n">database</span>
+</pre></div>
+</div>
+<p>Verify if docker-machine is running by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">machine</span> <span class="n">ls</span>
+</pre></div>
+</div>
+<p>You should see among others machines one with the name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dmt</span><span class="o">-</span><span class="n">cicd</span>
+</pre></div>
+</div>
+<p>Now you are able to use Buildbot through its <a class="reference external" href="http://localhost:8010/">web interface</a>. There are prepared <a class="reference external" href="http://localhost:8010/#/builders">builders</a> that allows to build,
+run and test all containers in docker-machine.</p>
+<p>For the first time you have to run at least once “Full rebuild” builder. While running it for
+the first time couple GBs of data will be downloaded so it make take a
+while. All base images for docker need to be downloaded to docker-machine (just to name a few: Python, PostgreSQL, ELK, Nginx).</p>
+<p>If by any chance you already have those images locally on your machine you can use
+a slightly faster way to copy them to your docker-machine. Simple bash
+script to do that is stored in yor_service project dir in the path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cicd</span><span class="o">/</span><span class="n">copy_docker_images_to_machine</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Now using IP generated for your docker-machine machine (in my case it is
+192.168.99.100) you can start using your services.</p>
+<p>Here is the <a class="reference external" href="http://192.168.99.100/admin">Django admin panel</a> (user: admin, password: admin).</p>
+<p>To read how it can be further used go to <a class="reference external" href="http://192.168.99.100/docs">docs</a>.</p>
+<p>To see any other useful links go to <a class="reference external" href="http://127.0.0.1/docs/links_page.html">this page</a> in docs.</p>
+<p>Whenever you do changes in your code, when you run any builders in Buildbot the fresh copy of your sources will be copied to Buildbot worker and tested.</p>
+<div class="section" id="remote-docker-host">
+<h3>Remote docker host<a class="headerlink" href="#remote-docker-host" title="Permalink to this headline">¶</a></h3>
+<p>If instead of <cite>make dev-docker-machine</cite> you run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">remote</span>
+</pre></div>
+</div>
+<p>then your services will be built and run on a remote docker host (as defined in remote.docker.env). To use a secure connection to your remote Docker host from CI/CD put your remote docker TLS certificates (ca.pem, cert.pem, key.pem) into <cite>cicd/worker/certs</cite> folders. Don’t forget to set in remote.docker.env for the DOCKER_MACHINE_NAME value aligned with your certificates. If you don’t use a secure connection to your remote machine, leave in the remote.docker.env only DOCKER_HOST value.</p>
+<p>To create certificates on you remote docker host you can use <a class="reference external" href="https://github.com/paulczar/omgwtfssl">this tool</a> .</p>
+<p><a class="reference external" href="https://docs.docker.com/engine/security/https/">Here</a> you can find more on securing the connection to your docker host.</p>
+<p>In order to have ElasticSearch working you have to set on your remote docker OS host</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sysctl</span> <span class="o">-</span><span class="n">w</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-docker-engine-context-for-cicd-docker-machine">
+<h3>The docker-engine context for cicd docker-machine<a class="headerlink" href="#the-docker-engine-context-for-cicd-docker-machine" title="Permalink to this headline">¶</a></h3>
+<p>To be able to call docker commands in the context of the docker-engine located on your dmt-cicd docker-machine you need to set up properly environment variable for DOCKER. You can do it by loading environment variables defined in the <cite>docker-machine.docker.env</cite> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">-</span><span class="n">a</span>
+<span class="o">.</span> <span class="o">./</span><span class="n">docker</span><span class="o">-</span><span class="n">machine</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">env</span>
+<span class="nb">set</span> <span class="o">+</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>be careful as for now all docker commands will be executed on the docker engine located in your dmt-cicd docker-machine.</p>
+<p>Fore remote docker host you can use the <cite>remote.docker.env</cite> file. Just remember that <code class="docutils literal notranslate"><span class="pre">DOCKER_CERT_PATH</span></code> in this file needs to be valid absolute
+path to certs on the client machine docker. For CI/CD worker <code class="docutils literal notranslate"><span class="pre">DOCKER_CERT_PATH</span></code> is overwritten in docker-compose file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">-</span><span class="n">a</span>
+<span class="o">.</span> <span class="o">./</span><span class="n">remote</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">env</span>
+<span class="nb">set</span> <span class="o">+</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>To unset those variables and be back in the context of the local docker-engine simply type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>eval $(make unset-docker)
+</pre></div>
+</div>
+</div>
+<div class="section" id="develop-ci-cd-machinery">
+<h3>Develop CI/CD machinery<a class="headerlink" href="#develop-ci-cd-machinery" title="Permalink to this headline">¶</a></h3>
+<p>If you need modify or add anything to CI/CD do changes in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cicd</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">master</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+<p>When changes are ready you can run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">cicd</span><span class="o">-</span><span class="n">validate</span>
+</pre></div>
+</div>
+<p>to let Buildbot to verify your cfg file and then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">cicd</span><span class="o">-</span><span class="n">reconfig</span>
+</pre></div>
+</div>
+<p>to load changes into dmt-cicd-worker container.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2><a class="toc-backref" href="#id9">Testing</a><a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bdd-sbe">
+<h3>BDD / SBE<a class="headerlink" href="#bdd-sbe" title="Permalink to this headline">¶</a></h3>
+<p>BDD is done with <a class="reference external" href="http://pythonhosted.org/behave/">behave</a>. Steps should use only exposed REST API to make it technology agnostic.</p>
+<p>To run SBE tests</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sbe</span>
+</pre></div>
+</div>
+<p>Tests are tagged with:</p>
+<ul class="simple">
+<li><p>&#64;smoketest - those should be test that run quickly and allows to verify if all main parts are alive and connected</p></li>
+<li><p>&#64;perf - performance tests, usually not that fast</p></li>
+<li><p>&#64;slow - any test that takes more then 10 secs to execute</p></li>
+<li><p>&#64;standard - when run make sbe all tests with &#64;standard and &#64;smoketest are run</p></li>
+</ul>
+<div class="section" id="how-to-write-a-new-sbe-test-with-behave">
+<h4>How to write a new SBE test with Behave<a class="headerlink" href="#how-to-write-a-new-sbe-test-with-behave" title="Permalink to this headline">¶</a></h4>
+<p>In the folder <code class="docutils literal notranslate"><span class="pre">testing/features</span></code> you will find files that holds test scenarios for different features. To add a new one:</p>
+<ol class="arabic">
+<li><p>Create a new file, eg <code class="docutils literal notranslate"><span class="pre">next.features</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">testing/features</span></code></p></li>
+<li><p>Put feature description and scenario in that file</p></li>
+<li><p>Run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sbe</span>
+</pre></div>
+</div>
+</li>
+<li><p>Behave will print code snippet to use for &#64;given &#64;when &#64;then to put in your <code class="docutils literal notranslate"><span class="pre">steps</span></code> files</p></li>
+<li><p>Crate new file <code class="docutils literal notranslate"><span class="pre">next.py</span></code> int folder <code class="docutils literal notranslate"><span class="pre">testing/features/steps</span></code></p></li>
+<li><p>Implement each step</p></li>
+<li><p>Run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sbe</span>
+</pre></div>
+</div>
+</li>
+<li><p>If all is there is read color - fix, if all is green you are done</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="unit-testing">
+<h3>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h3>
+<p>When you run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>then the standard Django mechanism for testing will be fired inside your docker images.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id10">Production</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="documentation">
+<h2><a class="toc-backref" href="#id11">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Generated by <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> with use of <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">reStructuredText</a>.</p>
+<p>If you change documentation (<code class="docutils literal notranslate"><span class="pre">docs/source</span> <span class="pre">folder</span></code>) you can rebuild it in the container by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">upload</span><span class="o">-</span><span class="n">docs</span>
+</pre></div>
+</div>
+<p>Source files of the docs are where code source lives in folder <code class="docutils literal notranslate"><span class="pre">docs/source</span></code>. While running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">upload-docs</span></code> the docs source files are copied to dmt-docs container where are compiled by Sphinx to HTML and then copied to Nginx to be served as static files.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="links_page.html" class="btn btn-neutral float-right" title="Links to services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="technical.html" class="btn btn-neutral float-left" title="Technical documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Wojciech Semik PaterIT
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

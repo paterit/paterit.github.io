@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simple development use cases &mdash; dmt 0.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="User documentation" href="../../user/user_documentation.html" />
+    <link rel="prev" title="Set up Remote Docker Machine" href="remote_docker_machine.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> dmt
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../technical.html">Technical documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install_and_config.html">Installation and configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links_page.html">Links to services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../use_cases.html">Technical use cases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="remote_docker_machine.html">Set up Remote Docker Machine</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Simple development use cases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#locating-problem-with-build-on-docker-machine-via-buildbot">Locating problem with build on docker-machine (via buildbot)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-new-sbe-test">Adding new sbe test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-new-make-commands-as-a-new-task-in-buildbot-builder">Adding new make commands as a new task in Buildbot builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user_documentation.html">User documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">dmt</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../technical.html">Technical documentation</a> &raquo;</li>
+        
+          <li><a href="../use_cases.html">Technical use cases</a> &raquo;</li>
+        
+      <li>Simple development use cases</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/use_cases/simple_dev.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="simple-development-use-cases">
+<h1>Simple development use cases<a class="headerlink" href="#simple-development-use-cases" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#locating-problem-with-build-on-docker-machine-via-buildbot" id="id1">Locating problem with build on docker-machine (via buildbot)</a></p></li>
+<li><p><a class="reference internal" href="#adding-new-sbe-test" id="id2">Adding new sbe test</a></p></li>
+<li><p><a class="reference internal" href="#adding-new-make-commands-as-a-new-task-in-buildbot-builder" id="id3">Adding new make commands as a new task in Buildbot builder</a></p></li>
+</ul>
+</div>
+<div class="section" id="locating-problem-with-build-on-docker-machine-via-buildbot">
+<h2><a class="toc-backref" href="#id1">Locating problem with build on docker-machine (via buildbot)</a><a class="headerlink" href="#locating-problem-with-build-on-docker-machine-via-buildbot" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>go to buildbot console (localhost:8010)</p></li>
+<li><p>take a look which part failed</p></li>
+<li><p>go to your project dir (eg. dmt-testing/yourservice)</p></li>
+<li><p>set env variables for DOCKER</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> -a
+. ./docker-machinve.docker.env
+<span class="nb">set</span> +a
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>now you can use make commands like <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">logs-web</span></code> to see logs for web container</p></li>
+<li><p>when you are done, don’t forget to unset DOCKER envs, by</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span> <span class="k">$(</span>make unset-docker<span class="k">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-new-sbe-test">
+<h2><a class="toc-backref" href="#id2">Adding new sbe test</a><a class="headerlink" href="#adding-new-sbe-test" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>add new example.feature file in <code class="docutils literal notranslate"><span class="pre">testing/features</span></code> folder</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sbe</span></code> and grab proposed code snippets into <code class="docutils literal notranslate"><span class="pre">testing/features/steps/example.py</span></code></p></li>
+<li><p>rework the code and the test until <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sbe</span></code> produce only green output</p></li>
+</ul>
+</div>
+<div class="section" id="adding-new-make-commands-as-a-new-task-in-buildbot-builder">
+<h2><a class="toc-backref" href="#id3">Adding new make commands as a new task in Buildbot builder</a><a class="headerlink" href="#adding-new-make-commands-as-a-new-task-in-buildbot-builder" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>add a new command into <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the main folder</p></li>
+</ul>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>prune-docker:
+  docker container stop <span class="k">$(</span>docker container ls -a -q<span class="k">)</span>
+  docker system prune --all --force --volumes
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li><p>in the <code class="docutils literal notranslate"><span class="pre">cicd/master/config/master.cfg</span></code> add</p></li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">prune_docker</span> <span class="o">=</span> <span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;prune docker&quot;</span><span class="p">,</span>
+                                <span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;make&quot;</span><span class="p">,</span> <span class="s2">&quot;prune-docker&quot;</span><span class="p">])</span>
+<span class="o">...</span>
+<span class="n">full_build_factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">make_prune_docker</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li><p>run make command to upload Buildbot config file and reload it</p></li>
+</ul>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>make cicd-upload
+</pre></div>
+</td></tr></table></div>
+<p>Verify if at the end of the output you can find <code class="docutils literal notranslate"><span class="pre">Config</span> <span class="pre">file</span> <span class="pre">is</span> <span class="pre">good!</span></code></p>
+<p>To make changes in Makefile effective in <code class="docutils literal notranslate"><span class="pre">CICD</span></code> context we need to rebuild cicd-worker where those commands are run.</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>make clean-cicd
+<span class="nb">source</span> ../virtenv/bin/activate <span class="c1">#not needed if already docker-compose is available</span>
+make run-cicd
+</pre></div>
+</td></tr></table></div>
+<p>Now when you force in Buildbot web console to run Full rebuild builder the new task will be fired.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../user/user_documentation.html" class="btn btn-neutral float-right" title="User documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="remote_docker_machine.html" class="btn btn-neutral float-left" title="Set up Remote Docker Machine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Wojciech Semik PaterIT
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
