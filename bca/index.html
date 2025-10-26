@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Breath Counting App - Audio-based breath detection for guided breathing exercises">
+    <title>BCA - Breath Counting App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #ffeaa7;
+            color: #856404;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .phases {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .phases ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .phases li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: #5568d3;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breath Counting App</h1>
+        <p class="tagline">Audio-based breath detection for guided breathing exercises</p>
+
+        <span class="status">🚧 In Planning Phase</span>
+
+        <h2>About</h2>
+        <p>
+            The Breath Counting App (BCA) is a mobile application that uses real-time audio analysis
+            to detect your breathing patterns and guide you through structured breathing exercises
+            inspired by the Wim Hof Method.
+        </p>
+
+        <h2>How It Works</h2>
+        <div class="phases">
+            <strong>4-Phase Breathing Cycle:</strong>
+            <ol>
+                <li><strong>Breathing Phase</strong> - Count 20-50 breaths with periodic audio signals</li>
+                <li><strong>First Breath Hold</strong> - User-controlled duration, auto-detected</li>
+                <li><strong>Recovery Breath Hold</strong> - Timed hold (10-30 seconds) after deep inhale</li>
+                <li><strong>Exhale & Cycle Completion</strong> - Deep exhale ends cycle</li>
+            </ol>
+        </div>
+
+        <h2>Key Features</h2>
+        <ul class="features">
+            <li>Real-time breath detection via device microphone</li>
+            <li>Automatic breath counting and cycle management</li>
+            <li>Audio and haptic feedback for eyes-closed operation</li>
+            <li>Fully customizable parameters (breath count, hold duration, cycles)</li>
+            <li>Completely offline - works in airplane mode</li>
+            <li>Privacy-first - no audio recording or storage</li>
+        </ul>
+
+        <h2>Roadmap</h2>
+        <p>
+            <strong>MVP:</strong> Android 16+ with core breathing cycle functionality<br>
+            <strong>Phase I:</strong> Google Pixel Watch 3 companion app<br>
+            <strong>Phase II:</strong> iOS support (iPhone)<br>
+            <strong>Phase III:</strong> Apple Watch companion app<br>
+            <strong>Phase IV:</strong> Health platform integrations and advanced features
+        </p>
+
+        <a href="https://github.com/paterit" class="github-link">View on GitHub</a>
+
+        <footer>
+            Built with ❤️ using BeeWare
+        </footer>
+    </div>
+</body>
+</html>
